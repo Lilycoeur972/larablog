@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePostsTable extends Migration
 {
@@ -21,7 +23,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
             $table->foreignIDFor(User::class);
-            $table->foreignIdFor(Categoy::class);
+            $table->foreignIdFor(Category::class);
         });
     }
 
