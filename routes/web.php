@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get ('/',[PostController::class,'index'])->name('posts.index');
 Route::middleware(['auth'])->group(function(){
 
+
+    Route::resource('posts',PostController::class)
+    ->except('index');
+
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard') ;
 });
-    Route::resource('posts',PostController::class)->except('index');
 
+        require __DIR__.'/auth.php';
 
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
